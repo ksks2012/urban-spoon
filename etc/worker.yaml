@@ -1,0 +1,51 @@
+header: 
+  title: Workers
+  server: east
+  tier: 
+    - 'T6'
+  cities: 
+    - 'Lymhurst'
+  qualities: 
+    - '1'
+  field:
+    - 'WOOD'
+    - 'ROCK'
+    - 'ORE'
+    - 'FIBER'
+    - 'HIDE'
+    - 'WARRIOR'
+    - 'MAGE'
+    - 'HUNTER'
+    - 'TOOLMAKER'
+source:
+  - 'WOOD'
+  - 'ROCK'
+  - 'ORE'
+  - 'FIBER'
+  - 'HIDE'
+refining:
+  - 'PLANKS'
+  - 'STONEBLOCK'
+  - 'METALBAR'
+  - 'CLOTH'
+  - 'LEATHER'
+empty journals:
+  - JOURNAL_WOOD_EMPTY
+  - 'JOURNAL_STONE_EMPTY'
+  - 'JOURNAL_ORE_EMPTY'
+  - 'JOURNAL_FIBER_EMPTY'
+  - 'JOURNAL_HIDE_EMPTY'
+  - 'JOURNAL_WARRIOR_EMPTY'
+  - 'JOURNAL_MAGE_EMPTY'
+  - 'JOURNAL_HUNTER_EMPTY'
+  - 'JOURNAL_TOOLMAKER_EMPTY'
+full journals:
+  - JOURNAL_WOOD_FULL
+  - 'JOURNAL_STONE_FULL'
+  - 'JOURNAL_ORE_FULL'
+  - 'JOURNAL_FIBER_FULL'
+  - 'JOURNAL_HIDE_FULL'
+  - 'JOURNAL_WARRIOR_FULL'
+  - 'JOURNAL_MAGE_FULL'
+  - 'JOURNAL_HUNTER_FULL'
+  - 'JOURNAL_TOOLMAKER_FULL'
