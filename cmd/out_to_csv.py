@@ -1,15 +1,18 @@
 import pprint
+import sys
 from api_routine.api import get_price
 from utils.read_file import read_yaml
 from utils import path
 
 
-def main():
-    worker_conf = read_yaml(path.WORKER_CONF)
-    header = worker_conf.get('header', {})
+def main(config_path=None):
+    if config_path is None:
+        config_path = path.WORKER_CONF
+    conf_data = read_yaml(config_path)
+    header = conf_data.get('header', {})
 
     data = {}
-    for key, value in worker_conf.items():
+    for key, value in conf_data.items():
         if key == 'header':
             continue
         
@@ -27,27 +30,30 @@ def main():
         tmp_data = {}
         for i, v in enumerate(value):
             # TODO: price check
-            if v['sell_price_min'] == 0:
-                price = v['buy_price_max']
-            elif v['buy_price_min'] == 0:
-                price = v['sell_price_min']
+            if v['sell_price_min'] == 0 or v['buy_price_max'] == 0:
+                price = 0
             else:
                 price = int((v['sell_price_min'] + v['buy_price_max']) / 2)
-            tmp_data[v['item_id']] = price
+            tmp_data[f"{v['city']} {v['item_id']}"] = price
         if key not in result_data:
             result_data[key] = tmp_data
         else:
             result_data[key].update(tmp_data)
 
     # data to rows
-    for key, value in worker_conf.items():
+    for key, value in conf_data.items():
         if key == 'header':
             continue
         print(f'{key}:')
-        for tier in header.get('tier', []):
-           for v in value:
-                print(f"{result_data[key][f'{tier}_{v}']}")
+        for city in header.get('cities', []):
+            print(f'\n{city}:')
+            for tier in header.get('tier', []):
+                for v in value:     
+                    print(f"{result_data[key][f'{city} {tier}_{v}']}")
         print('~~~~~~~~~~~~~\n')         
 
 if __name__ == '__main__':
-    main()
+    if len(sys.argv) == 2:
+        main(sys.argv[1])
+    else:
+        main()
