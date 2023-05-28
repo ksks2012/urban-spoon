@@ -2,7 +2,7 @@ header:
   title: Workers
   server: east
   tier: 
-    - 'T6'
+    - 'T5'
   cities: 
     - 'Lymhurst'
   qualities: 

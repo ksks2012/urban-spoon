@@ -17,3 +17,13 @@ Data from https://www.albion-online-data.com/
 ```
     .\cmd\out_to_csv.py etc/rock_price.yaml
 ```
+
+- Fiber price of each tier
+```
+    .\cmd\out_to_csv.py etc/fiber_price.yaml
+```
+
+- Hide price of each tier
+```
+    .\cmd\out_to_csv.py etc/hide_price.yaml
+```
