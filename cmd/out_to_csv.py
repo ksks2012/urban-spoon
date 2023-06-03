@@ -1,6 +1,6 @@
 import pprint
 import sys
-from api_routine.api import get_price
+from api_routine.api import get_timely_price
 from utils.read_file import read_yaml
 from utils import path
 
@@ -16,11 +16,11 @@ def main(config_path=None):
         if key == 'header':
             continue
         
-        data[key] = get_price(server=header.get('server', ''), 
+        data[key] = get_timely_price(server=header.get('server', ''), 
                                 cities=header.get('cities', []), 
                                 tiers=header.get('tier', []), 
                                 qualities=header.get('qualities', []), 
-                                data=value)
+                                item_data=value)
         
     pprint.pprint(data)
 
