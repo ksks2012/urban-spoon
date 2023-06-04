@@ -45,7 +45,7 @@ def get_history_price(server='east', cities=['Lymhurst'], tiers=['T5'], qualitie
     """
     data_url, cities_url, qualities_url = translate_url(tiers=tiers, item_data=item_data, cities=cities, qualities=qualities)
     try:
-        url = f"https://{server}.albion-online-data.com/api/v2/stats/history/{data_url}?date={start_date}&end_date={end_date}&locations={cities_url}&qualities=qualities={qualities_url}?time-scale={time_scale}"
+        url = f"https://{server}.albion-online-data.com/api/v2/stats/history/{data_url}?date={start_date}&end_date={end_date}&locations={cities_url}&qualities={qualities_url}&time-scale={time_scale}"
         print(url)
         r = requests.get(url)
         pprint.pprint(r.json())
