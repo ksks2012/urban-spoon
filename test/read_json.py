@@ -2,8 +2,10 @@ import json
 import os
 import pprint
 
+from api_routine.api import get_history_price
 from utils import path
 from utils import read_file
+from utils.read_file import read_yaml
 
 def read_json(filename):
     data = {}
@@ -75,6 +77,27 @@ def test_multi_cities():
                     print(f"{result_data[key][f'{city} {tier}_{v}']}")
         print('~~~~~~~~~~~~~\n')         
 
+def test_history_price():
+    conf_data = read_yaml("./etc/history_price.yaml")
+    header = conf_data.get('header', {})
+
+    data = {}
+    from time import gmtime, strftime
+    strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())
+    for key, value in conf_data.items():
+        if key == 'header':
+            continue
+        
+        data[key] = get_history_price(server=header.get('server', ''), 
+                                cities=header.get('cities', []), 
+                                tiers=header.get('tier', []), 
+                                qualities=header.get('qualities', []), 
+                                item_data=value,
+                                time_scale=1,
+                                start_date="6-2-2023",
+                                end_date="6-3-2023",)
+
 if __name__ == '__main__':
     # test_worker_price()
-    test_multi_cities()
+    # test_multi_cities()
+    test_history_price()
